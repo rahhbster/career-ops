@@ -141,6 +141,7 @@ const SYSTEM_PATHS = [
   'lib/latex-escape.mjs',
   'lib/latex-content.mjs',
   'lib/context-budget.mjs',
+  'lib/untrusted-content.mjs',
   'lib/context-budget.test.mjs',
   'lib/golden-budget-analysis.mjs',
   'img-to-pdf.mjs',
@@ -235,6 +236,7 @@ const SYSTEM_PATHS = [
   'fix-slugs.mjs',
   'updater-migration-tests.mjs',
   'validate-system-paths-coverage.mjs',
+  'validate-untrusted-content-coverage.mjs',
   'reply-matcher.mjs',
   'reply-matcher.test.mjs',
   'reply-watch.mjs',
@@ -367,6 +369,7 @@ const BOOTSTRAP_PATHS = [
 
 // User layer paths — NEVER touch these (safety check)
 const USER_PATHS = [
+  'BACKLOG.md',
   'cv.md',
   'config/profile.yml',
   'modes/_profile.md',

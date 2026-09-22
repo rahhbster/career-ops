@@ -30,6 +30,7 @@ import {
   formatReportNumber, releaseReportNumbers, reserveReportNumbers,
 } from './reserve-report-num.mjs';
 import { TokenAccumulator, formatBreakdown, normalizeOpenAIUsage } from './utils/token-tracker.mjs';
+import { wrapUntrustedText } from './lib/untrusted-content.mjs';
 
 const tracker = new TokenAccumulator();
 tracker.recordZeroToken('scan');
@@ -266,7 +267,7 @@ try {
       model:    modelName,
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user',   content: `JOB DESCRIPTION TO EVALUATE:\n\n${jdText}` },
+        { role: 'user',   content: `JOB DESCRIPTION TO EVALUATE:\n\n${wrapUntrustedText('job_description', jdText)}` },
       ],
       stream: false,
       // Ollama's /api/chat reads generation params from `options` only — a

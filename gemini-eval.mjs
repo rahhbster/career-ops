@@ -56,6 +56,7 @@ try {
 }
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { wrapUntrustedText } from './lib/untrusted-content.mjs';
 
 // ---------------------------------------------------------------------------
 // Paths
@@ -317,7 +318,7 @@ const model = genAI.getGenerativeModel({
 
 let evaluationText;
 try {
-  const result = await model.generateContent(`JOB DESCRIPTION TO EVALUATE:\n\n${jdText}`);
+  const result = await model.generateContent(`JOB DESCRIPTION TO EVALUATE:\n\n${wrapUntrustedText('job_description', jdText)}`);
   evaluationText = result.response.text();
   const usage = {
     prompt_tokens: result.response.usageMetadata?.promptTokenCount ?? 0,
