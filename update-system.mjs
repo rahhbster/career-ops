@@ -141,6 +141,7 @@ const SYSTEM_PATHS = [
   'lib/latex-escape.mjs',
   'lib/latex-content.mjs',
   'lib/context-budget.mjs',
+  'lib/untrusted-content.mjs',
   'lib/context-budget.test.mjs',
   'lib/golden-budget-analysis.mjs',
   'img-to-pdf.mjs',

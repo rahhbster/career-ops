@@ -28,6 +28,7 @@ import {
   formatReportNumber, releaseReportNumbers, reserveReportNumbers,
 } from './reserve-report-num.mjs';
 import { TokenAccumulator, formatBreakdown, normalizeOpenAIUsage } from './utils/token-tracker.mjs';
+import { wrapUntrustedText } from './lib/untrusted-content.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const tracker = new TokenAccumulator();
@@ -638,7 +639,7 @@ async function cmdEvaluate(input, ctx) {
 
   let resultObj;
   try {
-    resultObj = await callOpenRouter(systemPrompt, `Evaluate this job listing:\n\n${jdText}`);
+    resultObj = await callOpenRouter(systemPrompt, `Evaluate this job listing:\n\n${wrapUntrustedText('job_description', jdText)}`);
   } catch (e) {
     console.error(`OpenRouter error: ${e.message}`);
     return null;

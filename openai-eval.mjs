@@ -36,6 +36,7 @@ import {
 } from './reserve-report-num.mjs';
 import { TokenAccumulator, formatBreakdown, normalizeOpenAIUsage } from './utils/token-tracker.mjs';
 import { buildBudgetedPrompt } from './lib/context-budget.mjs';
+import { wrapUntrustedText } from './lib/untrusted-content.mjs';
 
 const tracker = new TokenAccumulator();
 tracker.recordZeroToken('scan');
@@ -315,7 +316,7 @@ try {
       model:    modelName,
       messages: [
         buildSystemMessage(systemPrompt, endpointHost),
-        { role: 'user', content: `JOB DESCRIPTION TO EVALUATE:\n\n${jdText}` },
+        { role: 'user', content: `JOB DESCRIPTION TO EVALUATE:\n\n${wrapUntrustedText('job_description', jdText)}` },
       ],
       stream:      false,
       temperature: 0.4,
