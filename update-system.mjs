@@ -369,6 +369,7 @@ const BOOTSTRAP_PATHS = [
 
 // User layer paths — NEVER touch these (safety check)
 const USER_PATHS = [
+  'BACKLOG.md',
   'cv.md',
   'config/profile.yml',
   'modes/_profile.md',
